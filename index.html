@@ -7,20 +7,16 @@
     <title>Document</title>
     <script async src="//www.youtube.com/iframe_api"></script>
 </head>
-<style>
-    iframe{
-  pointer-events: none;
-  width: 450px;
-  height:450px;
-}
-</style>
 <body>
-    <div id="YouTubeVideoPlayerAPI"></div>
+    <button type="button" id="button">點了會播放</button>
+    <br><br>
+    <div id="player"></div>
 </body>
 <script>
+
     function onYouTubeIframeAPIReady() {
   var player;
-  player = new YT.Player('YouTubeVideoPlayerAPI', {
+  player = new YT.Player('player', {
     videoId: 'GQe7YHqGe8c',   // YouTube 影片ID
     width: '400',            // 播放器寬度 (px)
     height: '400',           // 播放器高度 (px)
@@ -37,12 +33,40 @@
     },
     events: {
       onReady: function(e) {
-        e.target.mute();      //播放時靜音
+        //e.target.mute();      //播放時靜音
         e.target.playVideo(); //強制播放(手機才會自動播放，但僅限於Android)
       }
-    }
+    }  
   });
+  let yt_autoplay = document.querySelector("#yt_autoplay")
+    button.addEventListener("click", function(){
+        player.playVideo(); 
+    });
  }
+
+//  var yt = yt || {};
+// yt = {
+//   onPlayerReady: function(event) {
+//     //綁定撥放按鈕
+//     $('#button').on("click", function() { 
+//       yt.playerPlay()
+//       return false;
+//     });
+//   },
+//   onPlayerStateChange: function(event) { 
+//     //影片撥放完畢自動關閉
+//     if (event.data == YT.PlayerState.ENDED) 
+//       yt.playerClose();
+//   },
+//   playerPlay: function() { 
+//     player.playVideo(); //播放器開始撥放
+//     //其他影片撥放動作...
+//   },
+//   playerClose: function() { 
+//     player.stopVideo(); //播放器停止撥放
+//     //其他影片關閉動作...
+//   }
+// }
 </script>
 </html>
 
